@@ -45,4 +45,17 @@ body{
 
 .form{
 	margin:auto;
+	width: 40%;
+	padding-top: 30vh;
+}
+
+.box{
+	font-size:2vw;
+}
+
+.sub{
+	margin-top: 1vh;
+	height: 10%;
+	width: 78%;
+	font-size: 5vh;
 }
