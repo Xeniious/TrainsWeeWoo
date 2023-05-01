@@ -8,7 +8,7 @@
 		mysql_select_db($sqlusername) or die('Could not select database');
 
 	// Send SQL query
-		$query = 'SELECT DISTINCT SNACKS FROM TRAIN JOIN TRIP ON TRAIN.TRAINNAME = TRIP.TRAINNAME';
+		$query = 'SELECT DISTINCT TRIP.TRAINNAME, TRIPNUM, SNACKS FROM TRAIN JOIN TRIP ON TRAIN.TRAINNAME = TRIP.TRAINNAME';
 		$result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
 	// Print results in HTML
@@ -16,6 +16,7 @@
         foreach ($line as $col_value) {
             echo "<p>$col_value</p>";
         }
+		echo "<hr>";
     }
 
 	// Free resultset

@@ -1,8 +1,8 @@
 <?php
-    // if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    //     $stationnum = $_POST["stationnum"];
-    // }
-    $stationnum = 10;
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        $cityName = $_POST["cityName"];
+    }
+ 
 
 	$sqlusername = 'c747b428';
 	$sqlpassword = 'ni9Theem';
@@ -13,7 +13,7 @@
 		mysql_select_db($sqlusername) or die('Could not select database');
 
 	// Send SQL query
-		$query = "SELECT * FROM STATION WHERE NUMBER = '$stationnum'";
+		$query = "SELECT * FROM TRIP WHERE DEPARTFROM  = '$cityName'";
 		$result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
 

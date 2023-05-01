@@ -1,4 +1,7 @@
 <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        $conductorName = $_POST["conductorName"];
+    }
 	$sqlusername = 'c747b428';
 	$sqlpassword = 'ni9Theem';
 	// Connect to MySQL server, select database
@@ -8,18 +11,16 @@
 		mysql_select_db($sqlusername) or die('Could not select database');
 
 	// Send SQL query
-		$query = 'SELECT DISTINCT CONDUCTOR FROM TRIP JOIN TRAIN ON TRAIN.TRAINNAME = TRIP.TRAINNAME';
+		$query = "SELECT TRAIN.CONDUCTOR, TRAIN.TRAINNAME, STARTTIME, ENDTIME FROM TRIP JOIN TRAIN ON TRAIN.TRAINNAME = TRIP.TRAINNAME AND CONDUCTOR = '$conductorName'";
 		$result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
 	// Print results in HTML
-		echo "<select>";
 		while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 				foreach ($line as $col_value) {
-					echo "<option value='$col_value'>$col_value</option>";
+					echo "<p>$col_value</p>";
 				}
+				echo "<hr>";
 		}
-		echo "</select>";
-		echo "<input type='submit'>";
 
 	// Free resultset
 		mysql_free_result($result);
